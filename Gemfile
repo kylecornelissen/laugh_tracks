@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'json'
 end
 
 group :development do
