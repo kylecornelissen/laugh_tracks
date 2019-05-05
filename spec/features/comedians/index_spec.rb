@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "comedians index page", type: :feature do
-
+  # USER STORY 1
   # As a user,
   # when I visit '/comedians'
   # Then I see a list of comedians with name, age, and city
@@ -18,6 +18,7 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_content("(#{brian.age} years old) #{brian.city}")
   end
 
+  # USER STORY 2
   # As a visitor
   # When I visit `/comedians`
   # Then I also see a list of each comedian's TV specials, including
@@ -44,6 +45,7 @@ RSpec.describe "comedians index page", type: :feature do
 
   end
 
+  # USER STORY 3
   # As a visitor
   # When I visit `/comedians`
   # I see a thumbnail image for each comedian
@@ -58,6 +60,7 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_css("img[src*='brian.png']")
   end
 
+  # USER STORY 4
   # As a visitor
   # When I visit `/comedians?age=34`
   # Then I see the list of comedians on the page only shows
@@ -74,4 +77,25 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_content("(#{andy.age} years old) #{andy.city}")
     expect(page).to have_css("img[src*='andy.png']")
   end
+
+  # USER STORY 5
+  # As a visitor
+  # When I visit `/comedians`
+  # For each comedian, I see a count of their TV specials
+
+  it "user can see TV special count" do
+    andy = Comedian.new(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
+    andy.save
+    special_1 = Special.new(name: "Man On The Moon", run_time: 60)
+    special_1.comedian = andy
+    special_1.save
+    special_2 = Special.new(name: "Andy Live in NY", run_time: 50)
+    special_2.comedian = andy
+    special_2.save
+
+    visit '/comedians'
+
+    expect(page).to have_content(andy.special_count)
+  end
+  
 end
