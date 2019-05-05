@@ -21,4 +21,19 @@ RSpec.describe Comedian, type: :model do
     end
   end
 
+  describe 'instance methods' do
+    it '.special_count' do
+      andy = Comedian.new(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
+      andy.save
+      special_1 = Special.new(name: "Man On The Moon", run_time: 60)
+      special_1.comedian = andy
+      special_1.save
+      special_2 = Special.new(name: "Andy Live in NY", run_time: 50)
+      special_2.comedian = andy
+      special_2.save
+
+      expect(andy.special_count).to eq(2)
+    end
+  end
+
 end
