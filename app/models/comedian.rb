@@ -9,4 +9,8 @@ class Comedian < ApplicationRecord
   def self.age_filter(age)
     self.where(age: age.to_i)
   end
+
+  def special_count
+    specials.count
+  end
 end

@@ -4,7 +4,8 @@
   <h2><%= comedian.name %></h2>
   <p><img src=<%= comedian.img_url %> alt = "<%= comedian.name %>" /></p>
   <h3>(<%= comedian.age %> years old) <%= comedian.city %></h3>
+  <h2><%= comedian.special_count %> specials:</h2>
   <% comedian.specials.each do |special| %>
-    <h3><%= special.name %> (<%= special.run_time %> minutes)</h3>
+    <ol><%= special.name %> (<%= special.run_time %> minutes)</ol>
   <% end %>
 <% end %>
