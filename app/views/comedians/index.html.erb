@@ -1,10 +1,14 @@
 <h1>Comedians</h1>
+<p>========================</p>
+<h2>Comedian Statistics</h2>
+<h3>Average age: <%= @comedians.average_age.to_f.round(2) %> years old</h3>
+<h3>Cities: <%= @comedians.list_cities.join('; ') %></h3>
 <% @comedians.each do |comedian| %>
   <p>========================</p>
-  <h2><%= comedian.name %></h2>
+  <h3><%= comedian.name %></h3>
   <p><img src=<%= comedian.img_url %> alt = "<%= comedian.name %>" /></p>
-  <h3>(<%= comedian.age %> years old) <%= comedian.city %></h3>
-  <h2><%= comedian.special_count %> specials:</h2>
+  <h4>(<%= comedian.age %> years old) <%= comedian.city %></h4>
+  <h4><%= comedian.special_count %> TV Specials:</h4>
   <% comedian.specials.each do |special| %>
     <ol><%= special.name %> (<%= special.run_time %> minutes)</ol>
   <% end %>
