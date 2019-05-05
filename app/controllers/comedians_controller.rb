@@ -13,11 +13,8 @@ class ComediansController < ApplicationController
 
   def create
     comedian = Comedian.new(comedian_params)
-    if comedian.save
-      redirect_to "/comedians"
-    else
-      render :new
-    end
+    comedian.save
+    redirect_to "/comedians"
   end
 
   private
