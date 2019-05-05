@@ -2,9 +2,6 @@ require "rails_helper"
 
 RSpec.describe "comedians index page", type: :feature do
   # USER STORY 1
-  # As a user,
-  # when I visit '/comedians'
-  # Then I see a list of comedians with name, age, and city
 
   it "user can see all comedians" do
     andy = Comedian.create(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
@@ -19,9 +16,6 @@ RSpec.describe "comedians index page", type: :feature do
   end
 
   # USER STORY 2
-  # As a visitor
-  # When I visit `/comedians`
-  # Then I also see a list of each comedian's TV specials, including
 
   it "user can see comedian specials" do
     # used multiple ways to create objects for future reference (.new is industry preferred)
@@ -46,9 +40,6 @@ RSpec.describe "comedians index page", type: :feature do
   end
 
   # USER STORY 3
-  # As a visitor
-  # When I visit `/comedians`
-  # I see a thumbnail image for each comedian
 
   it "user can see comedian images" do
     andy = Comedian.create(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
@@ -61,10 +52,6 @@ RSpec.describe "comedians index page", type: :feature do
   end
 
   # USER STORY 4
-  # As a visitor
-  # When I visit `/comedians?age=34`
-  # Then I see the list of comedians on the page only shows
-  # comedians who match the age criteria.
 
   it "user can see comedians by age param" do
     andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
@@ -79,9 +66,6 @@ RSpec.describe "comedians index page", type: :feature do
   end
 
   # USER STORY 5
-  # As a visitor
-  # When I visit `/comedians`
-  # For each comedian, I see a count of their TV specials
 
   it "user can see TV special count" do
     andy = Comedian.new(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
@@ -97,5 +81,6 @@ RSpec.describe "comedians index page", type: :feature do
 
     expect(page).to have_content(andy.special_count)
   end
+
   
 end
