@@ -13,4 +13,12 @@ class Comedian < ApplicationRecord
   def special_count
     specials.count
   end
+
+  def self.average_age
+    self.average(:age)
+  end
+
+  def self.list_cities
+    self.distinct.pluck(:city)
+  end
 end

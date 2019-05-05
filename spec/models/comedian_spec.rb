@@ -19,6 +19,20 @@ RSpec.describe Comedian, type: :model do
 
       expect(Comedian.age_filter("34")).to eq([andy])
     end
+
+    it '.average_age' do
+      andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
+      brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
+
+      expect(Comedian.average_age).to eq(47)
+    end
+
+    it '.list_cities' do
+      andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
+      brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
+
+      expect(Comedian.list_cities).to eq([brian.city, andy.city])
+    end
   end
 
   describe 'instance methods' do
