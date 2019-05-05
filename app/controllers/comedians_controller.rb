@@ -1,5 +1,9 @@
 class ComediansController < ApplicationController
   def index
-    @comedians = Comedian.all
+    if params[:age]
+      @comedians = Comedian.age_filter(params[:age])
+    else
+      @comedians = Comedian.all
+    end
   end
 end

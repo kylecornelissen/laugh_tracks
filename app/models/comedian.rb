@@ -6,4 +6,7 @@ class Comedian < ApplicationRecord
   validates_presence_of :city
   validates_presence_of :img_url
 
+  def self.age_filter(age)
+    self.where(age: age.to_i)
+  end
 end
