@@ -55,5 +55,23 @@ RSpec.describe "comedians index page", type: :feature do
     visit "/comedians"
 
     expect(page).to have_css("img[src*='andy.png']")
+    expect(page).to have_css("img[src*='brian.png']")
+  end
+
+  # As a visitor
+  # When I visit `/comedians?age=34`
+  # Then I see the list of comedians on the page only shows
+  # comedians who match the age criteria.
+
+  it "user can see comedians by age param" do
+    andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
+    brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
+
+    visit '/comedians?age=34'
+
+    expect(page).to have_no_content(brian.name)
+    expect(page).to have_content(andy.name)
+    expect(page).to have_content("(#{andy.age} years old) #{andy.city}")
+    expect(page).to have_css("img[src*='andy.png']")
   end
 end

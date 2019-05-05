@@ -12,4 +12,13 @@ RSpec.describe Comedian, type: :model do
     it { should have_many :specials }
   end
 
+  describe 'class methods' do
+    it '.age_filter' do
+      andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
+      brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
+
+      expect(Comedian.age_filter("34")).to eq([andy])
+    end
+  end
+
 end
