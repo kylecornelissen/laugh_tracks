@@ -1,15 +1,29 @@
-<h1>Comedians</h1>
-<p>========================</p>
-<h2>Comedian Statistics</h2>
-<h3>Average age: <%= @comedians.average_age.to_f.round(2) %> years old</h3>
-<h3>Cities: <%= @comedians.list_cities.join('; ') %></h3>
-<% @comedians.each do |comedian| %>
-  <p>========================</p>
-  <h3><%= comedian.name %></h3>
-  <p><img src=<%= comedian.img_url %> alt = "<%= comedian.name %>" /></p>
-  <h4>(<%= comedian.age %> years old) <%= comedian.city %></h4>
-  <h4><%= comedian.special_count %> TV Specials:</h4>
-  <% comedian.specials.each do |special| %>
-    <ol><%= special.name %> (<%= special.run_time %> minutes)</ol>
+<head>
+  <body>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+  <link rel="stylesheet" href="application.css">
+  <h1>Comedians</h1>
+
+  <h2>Comedian Statistics</h2>
+    <h3>Average age:
+      <br><%= @comedians.average_age.to_f.round(2) %> years old
+    </h3>
+    <h3>Cities:<br><%= @comedians.list_cities.join(' / ') %></h3>
+
+  <% @comedians.each do |comedian| %>
+    <section>
+      <h3 class="names"><%= comedian.name %></h3>
+      <div class ="zoom"> <img src=<%= comedian.img_url %> alt = "<%= comedian.name %>" /><br></div>
+      (<%= comedian.age %> years old) <%= comedian.city %>
+      <h4><%= comedian.special_count %> Standup Specials:</h4>
+      <div id="specials">
+      <% comedian.specials.each do |special| %>
+        <%= special.name %> (<%= special.run_time %> minutes)<br>
+      <% end %>
+      </div>
+    </section>
   <% end %>
-<% end %>
+
+  <p><br><a href='comedians/new' class="button">Add New Comedian</a></p>
+  </body>
+</head>

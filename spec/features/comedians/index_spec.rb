@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "comedians index page", type: :feature do
   # USER STORY 1
 
-  xit "user can see all comedians" do
+  it "user can see all comedians" do
     andy = Comedian.create(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
     brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
 
@@ -17,7 +17,7 @@ RSpec.describe "comedians index page", type: :feature do
 
   # USER STORY 2
 
-  xit "user can see comedian specials" do
+  it "user can see comedian specials" do
     # used multiple ways to create objects for future reference (.new is industry preferred)
     andy = Comedian.new(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
     andy.save
@@ -41,7 +41,7 @@ RSpec.describe "comedians index page", type: :feature do
 
   # USER STORY 3
 
-  xit "user can see comedian images" do
+  it "user can see comedian images" do
     andy = Comedian.create(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
     brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
 
@@ -53,7 +53,7 @@ RSpec.describe "comedians index page", type: :feature do
 
   # USER STORY 4
 
-  xit "user can see comedians by age param" do
+  it "user can see comedians by age param" do
     andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
     brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
 
@@ -67,7 +67,7 @@ RSpec.describe "comedians index page", type: :feature do
 
   # USER STORY 5
 
-  xit "user can see TV special count" do
+  it "user can see TV special count" do
     andy = Comedian.new(name: "Andy Kauffman", age: 35, city: "New York, NY", img_url: "andy.png")
     andy.save
     special_1 = Special.new(name: "Man On The Moon", run_time: 60)
@@ -82,7 +82,7 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_content(andy.special_count)
   end
 
-  # USER STORY 7
+  # USER STORY 7 and 8
 
   it "user can see statistics" do
     andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
@@ -92,12 +92,12 @@ RSpec.describe "comedians index page", type: :feature do
     visit '/comedians'
 
     expect(page).to have_content(Comedian.average_age.to_f.round(2))
-    expect(page).to have_content(Comedian.list_cities.join('; '))
+    expect(page).to have_content(Comedian.list_cities.join(' / '))
 
     visit '/comedians?age=34'
     comedians = Comedian.age_filter(34)
 
     expect(page).to have_content(comedians.average_age.to_f.round(2))
-    expect(page).to have_content(comedians.list_cities.join('; '))
+    expect(page).to have_content(comedians.list_cities.join(' / '))
   end
 end

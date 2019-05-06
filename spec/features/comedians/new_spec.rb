@@ -15,7 +15,7 @@ RSpec.describe "comedians new page", type: :feature do
     fill_in "comedian[age]", with: age
     fill_in "comedian[city]", with: city
     fill_in "comedian[img_url]", with: img_url
-    click_on "Create Comedian"
+    click_on "Add Comedian"
 
     expect(page).to have_content(comedian_name)
     expect(page).to have_content(age)
