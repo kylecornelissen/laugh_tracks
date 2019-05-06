@@ -32,6 +32,8 @@ h1 {
   border-top: 2px solid grey;
   box-shadow: 0 10px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   background-color: rgba(0,0,0,.5);
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 h2 {
@@ -40,9 +42,9 @@ h2 {
 }
 
 #specials {
-  color: #D0D0D0;
-  text-shadow: 1px 2px 2px #C090FF;
-  font-size: 16px;
+  color: #C090FF;
+  text-shadow: 0px 0px 2px white;
+  font-size: 18px;
 }
 
 .statistics {
@@ -62,13 +64,15 @@ h2 {
 }
 
 .names {
-  color: #4CAF50;
+  color: white;
   font-size: 32px;
-  text-shadow: 1px 2px 2px white;
+  text-shadow: 0px 0px 4px white;
   border-bottom: 2px solid grey;
   border-top: 2px solid grey;
   background-color: rgba(0,0,0,.5);
   box-shadow: 0 10px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  padding-top:10px;
+  padding-bottom:5px;
 }
 
 .zoom {
