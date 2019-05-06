@@ -47,8 +47,8 @@ RSpec.describe "comedians index page", type: :feature do
 
     visit "/comedians"
 
-    expect(page).to have_css("img[src*='andy.png']")
-    expect(page).to have_css("img[src*='brian.png']")
+    expect(page).to have_css("img[src*='#{andy.img_url}']")
+    expect(page).to have_css("img[src*='#{brian.img_url}']")
   end
 
   # USER STORY 4
@@ -62,7 +62,7 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_no_content(brian.name)
     expect(page).to have_content(andy.name)
     expect(page).to have_content("(#{andy.age} years old) #{andy.city}")
-    expect(page).to have_css("img[src*='andy.png']")
+    expect(page).to have_css("img[src*='#{andy.img_url}']")
   end
 
   # USER STORY 5
@@ -82,5 +82,22 @@ RSpec.describe "comedians index page", type: :feature do
     expect(page).to have_content(andy.special_count)
   end
 
-  
+  # USER STORY 7 and 8
+
+  it "user can see statistics" do
+    andy = Comedian.create(name: "Andy Kauffman", age: 34, city: "New York, NY", img_url: "andy.png")
+    randy = Comedian.create(name: "Randy Kauffman", age: 34, city: "Miami, FL", img_url: "randy.png")
+    brian = Comedian.create(name: "Brian Regan", age: 60, city: "Miami, FL", img_url: "brian.png")
+
+    visit '/comedians'
+
+    expect(page).to have_content(Comedian.average_age.to_f.round(2))
+    expect(page).to have_content(Comedian.list_cities.join(' / '))
+
+    visit '/comedians?age=34'
+    comedians = Comedian.age_filter(34)
+
+    expect(page).to have_content(comedians.average_age.to_f.round(2))
+    expect(page).to have_content(comedians.list_cities.join(' / '))
+  end
 end
